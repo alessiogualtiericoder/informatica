@@ -27,7 +27,7 @@ if (isset($_POST['salva'])) {
     $cap       = trim($_POST['cap']       ?? '');
     $email     = trim($_POST['email']     ?? '');
     $telefono  = trim($_POST['telefono']  ?? '');
-    $attivo    = ($_POST['attivo'] ?? 0);
+    $attivo    = $_POST['attivo'] ?? 0;
 
     if (!$nome || !$cognome || !$email) {
         $errore = "Nome, cognome ed email sono obbligatori";
@@ -73,7 +73,7 @@ if (!$utente) {
     <title>Modifica utente</title>
 </head>
 <body>
-    <h1>Modifica utente: <?= htmlspecialchars($username) ?></h1>
+    <h1>Modifica utente</h1>
 
     <?php if ($errore)    echo "<p style='color:red'>"   . htmlspecialchars($errore)    . "</p>"; ?>
     <?php if ($messaggio) echo "<p style='color:green'>" . htmlspecialchars($messaggio) . "</p>"; ?>
