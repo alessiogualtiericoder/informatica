@@ -36,7 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="it">
-<head><title>Registrazione</title></head>
+<head>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione</title>
+</head>
 <body>
     <h1>Registrazione</h1>
     <?php if ($errore)   echo "<p style='color:red'>" . htmlspecialchars($errore) . "</p>"; ?>
@@ -59,10 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="3">Ospite</option>
         </select><br><br>
         Attivo:    
-        <input type="radio"    name="attivo"    value="1"> Si
+        <input type="radio"    name="attivo"    value="1" checked> Si
         <input type="radio"    name="attivo"    value="0"> No
         <br><br>
-        <button type="submit">Registrati</button>
+        <button type="submit" class="btn btn-primary">Registrati</button>
+        <br><br>
         <p>Già registrato? <a href="index.php">Login</a></p>
     </form>
 </body>

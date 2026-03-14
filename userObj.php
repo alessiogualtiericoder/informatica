@@ -118,11 +118,15 @@ class userObj {
         return $stmt->fetch();
     }
 
-    public function readAccess() {
+    public function readAccess($num) {
         $sql = "SELECT username, dataLogin, dataLogout 
                 FROM sessioni s
-                JOIN utenti u ON u.id = s.idUtente";
+                JOIN utenti u ON u.id = s.idUtente
+                ORDER BY dataLogin DESC
+                LIMIT :numero";
         $stmt = $this->db->prepare($sql);
+        $num = (int)$num;
+        $stmt->bindParam(':numero', $num, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }

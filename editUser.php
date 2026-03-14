@@ -33,7 +33,7 @@ if (isset($_POST['salva'])) {
         $errore = "Nome, cognome ed email sono obbligatori";
     } else {
         try {
-            $userDaAggiornare = new userObj(
+            $userUpdate = new userObj(
                 $conn,
                 $username,
                 null,
@@ -47,7 +47,7 @@ if (isset($_POST['salva'])) {
                 $attivo
             );
 
-            $userDaAggiornare->update($username);
+            $userUpdate->update($username);
             $messaggio = "Utente aggiornato";
 
         } catch (PDOException $e) {
@@ -68,6 +68,8 @@ if (!$utente) {
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifica utente</title>
@@ -118,8 +120,8 @@ if (!$utente) {
         <input type="radio" name="attivo" value="0" <?= $utente['attivo'] == 0 ? 'checked' : '' ?>> No
         <br><br>
 
-        <button type="submit" name="salva">Salva modifiche</button>
-        <button type="submit" name="indietro">Indietro</button>
+        <button type="submit" name="salva" class="btn btn-primary btn-sm">Salva modifiche</button>
+        <button type="submit" name="indietro" class="btn btn-secondary btn-sm">Indietro</button>
     </form>
 </body>
 </html>
