@@ -15,6 +15,11 @@ $user   = new userObj($conn, $username);
 $utenti = $user->readAll();
 $righe  = $_POST['righe'] ?? 5;
 $sessioni = $user->readAccess($righe);
+
+if (isset($_POST['upload']) && $_FILES['image']['error']) {
+
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,12 +83,11 @@ $sessioni = $user->readAccess($righe);
         <form action="" method="POST" class="d-flex align-items-center gap-2 mb-3">
             <label class="mb-0">Righe</label>
             <select name="righe" class="form-select form-select-sm w-auto">
-                <option value="5" <?= $righe==5 ? 'selected' : '' ?>>5</option>
+                <option value="10" <?= $righe==5 ? 'selected' : '' ?>>5</option>
                 <option value="10" <?= $righe==10 ? 'selected' : '' ?>>10</option>
                 <option value="25" <?= $righe==25 ? 'selected' : '' ?>>25</option>
                 <option value="50" <?= $righe==50 ? 'selected' : '' ?>>50</option>
                 <option value="100" <?= $righe==100 ? 'selected' : '' ?>>100</option>
-                <option value="200" <?= $righe==200 ? 'selected' : '' ?>>200</option>
             </select>
             <button type="submit" class="btn btn-primary btn-sm">Invia</button>
         </form>
@@ -106,6 +110,13 @@ $sessioni = $user->readAccess($righe);
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="upload-image">Inserisci una foto:</label><br><br>
+            <input type="file" name="image" accept="image/*">
+            <button type="submit" name="upload" class="btn btn-primary">Carica</button>
+            <button type="submit" name="cancel" class="btn btn-secondary">Annulla</button>
+        </form>
 
     </div>
 

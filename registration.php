@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $attivo    = $_POST['attivo'] ?? 1;
     $citta     = trim($_POST['citta']     ?? '');
     $cap       = trim($_POST['cap']       ?? '');
-    $ruolo     = $_POST['ruolo'] ?? 2;              // Ruolo dovrebbe essere scelto via DB e non dal FORM
+    $ruolo     = $_POST['ruolo'] ?? 2;              // Ruolo dovrebbe essere scelto via DB
 
     if (!$username || !$password || !$nome || !$cognome || !$email) {
         $errore = "Compila tutti i campi obbligatori";
@@ -37,18 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <h1>Registrazione</h1>
     <?php if ($errore)   echo "<p style='color:red'>" . htmlspecialchars($errore) . "</p>"; ?>
     <?php if ($messaggio) echo "<p style='color:green'>" . htmlspecialchars($messaggio) . "</p>"; ?>
 
-    <form action="" method="POST">
+    <form method="POST">
         Username:  <input type="text"     name="username"  required><br><br>
         Password:  <input type="password" name="password"  required><br><br>
         Nome:      <input type="text"     name="nome"      required><br><br>
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
         <button type="submit" class="btn btn-primary">Registrati</button>
         <br><br>
-        <p>Già registrato? <a href="index.php">Login</a></p>
+        <p>Già registrato? <a href="login.php">Login</a></p>
     </form>
 </body>
 </html>
