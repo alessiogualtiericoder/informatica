@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errore = "Compila tutti i campi obbligatori";
     } else {
         try {
+            // DB, username, password, nome, cognome, città, email, attivo, id_profilo, id_nazione, foto_profilo
             $user = new userObj($conn, $username, $password, $nome, $cognome, $citta, $email, 1, $id_profilo, $id_nazione ?: null);
             $user->create();
             $messaggio = "Registrazione completata";
