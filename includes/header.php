@@ -1,14 +1,16 @@
 <?php
+$currentPage = basename($_SERVER['SCRIPT_NAME']);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['logout'])) {
         header("Location: /pages/logout.php");
         exit();
     }
-    if (isset($_POST['login'])) {
+    if (isset($_POST['login']) && $currentPage !== 'login.php') {
         header("Location: /pages/login.php");
         exit();
     }
-    if (isset($_POST['signup'])) {
+    if (isset($_POST['signup']) && $currentPage !== 'signup.php') {
         header("Location: /pages/signup.php");
         exit();
     }
@@ -17,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
-
-$currentPage = basename($_SERVER['SCRIPT_NAME']);
 ?>
 
 <nav class="navbar navbar-dark bg-dark">

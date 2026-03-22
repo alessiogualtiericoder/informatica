@@ -71,12 +71,12 @@ if (isset($_POST['login'])) {
                 <form method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label small fw-semibold">Username</label>
-                        <input type="text" id="username" name="username" class="form-control"
+                        <input type="text" name="username" class="form-control"
                                placeholder="Inserisci username" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label small fw-semibold">Password</label>
-                        <input type="password" id="password" name="password" class="form-control"
+                        <input type="password" name="password" class="form-control"
                                placeholder="••••••••" required>
                     </div>
                     <div class="d-grid gap-2 mt-4">
