@@ -7,7 +7,7 @@ $messaggio = '';
 
 $nazioni = [];
 try {
-    $stmt    = $conn->query("SELECT id_nazione, nome_nazione FROM nazioni ORDER BY nome_nazione");
+    $stmt    = $conn->query("SELECT iso_code, nome_nazione FROM nazioni ORDER BY nome_nazione");
     $nazioni = $stmt->fetchAll();
 } catch (PDOException $e) {}
 
@@ -18,15 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cognome    = trim($_POST['cognome']    ?? '');
     $citta      = trim($_POST['citta']      ?? '');
     $email      = trim($_POST['email']      ?? '');
-    $id_nazione = $_POST['id_nazione']      ?? null;
+    $iso_code   = $_POST['iso_code']      ?? null;
     $id_profilo = 2; // utente standard
+    $attivo     = 1; // utente attivo
 
     if (!$username || !$password || !$nome || !$cognome || !$email) {
         $errore = "Compila tutti i campi obbligatori";
     } else {
         try {
-            // DB, username, password, nome, cognome, città, email, attivo, id_profilo, id_nazione, foto_profilo
-            $user = new userObj($conn, $username, $password, $nome, $cognome, $citta, $email, 1, $id_profilo, $id_nazione ?: null);
+            // DB, username, password, nome, cognome, città, email, attivo, id_profilo, iso_code, foto_profilo
+            $user = new userObj($conn, $username, $password, $nome, $cognome, $citta, $email, $attivo, $id_profilo, $iso_code ?: null);
             $user->create();
             $messaggio = "Registrazione completata";
         } catch (PDOException $e) {
@@ -43,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -102,10 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="col-12">
                             <label class="form-label fw-semibold">Nazione</label>
-                            <select name="id_nazione" class="form-select">
+                            <select name="iso_code" class="form-select">
                                 <option value="">— Seleziona —</option>
                                 <?php foreach ($nazioni as $n): ?>
-                                    <option value="<?= (int)$n['id_nazione'] ?>">
+                                    <option value="<?= $n['iso_code'] ?>">
                                         <?= htmlspecialchars($n['nome_nazione']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -116,9 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="checkbox" required>
                             <label for="termini">Accetto l'Informativa sulla <a href="privacy.php" class="text-decoration-none fw-bold">
                                 Privacy
-                            </a> e i <a href="terms_of_service.php" class="text-decoration-none fw-bold">
-                                Termini di servizio
-                            </a> di Cinevobis</label>
+                            </a> e i <a href="terms_of_service.php" class="text-decoration-none fw-bold">Termini di servizio</a> di Cinevobis</label>
                         </div>
 
                         <div class="col-12 mt-4">
@@ -140,5 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

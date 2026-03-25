@@ -1,4 +1,2 @@
 alessio -> vobis
-emma -> sato
-luca -> leone
-yoru -> japan
+other people -> film

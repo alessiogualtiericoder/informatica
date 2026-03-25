@@ -15,13 +15,13 @@ $errore    = '';
 $messaggio = '';
 
 if (isset($_POST['indietro'])) {
-    header("Location: sessionArea.php");
+    header("Location: users_area.php");
     exit();
 }
 
 $nazioni = [];
 try {
-    $stmt    = $conn->query("SELECT id_nazione, nome_nazione FROM nazioni ORDER BY nome_nazione");
+    $stmt    = $conn->query("SELECT iso_code, nome_nazione FROM nazioni ORDER BY nome_nazione");
     $nazioni = $stmt->fetchAll();
 } catch (PDOException $e) {}
 
@@ -30,7 +30,7 @@ if (isset($_POST['salva'])) {
     $cognome    = trim($_POST['cognome']    ?? '');
     $citta      = trim($_POST['citta']      ?? '');
     $email      = trim($_POST['email']      ?? '');
-    $id_nazione = $_POST['id_nazione']      ?? null;
+    $iso_code   = $_POST['iso_code']      ?? null;
     $attivo     = $_POST['attivo']          ?? 0;
 
     if (!$nome || !$cognome || !$email) {
@@ -40,7 +40,7 @@ if (isset($_POST['salva'])) {
             $userUpdate = new userObj(
                 $conn, $username, null,
                 $nome, $cognome, $citta, $email,
-                $attivo, null, $id_nazione ?: null
+                $attivo, null, $iso_code ?: null
             );
             $userUpdate->update($username);
             $messaggio = "Utente aggiornato";
@@ -66,7 +66,6 @@ if (!$utente) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifica utente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -125,11 +124,11 @@ if (!$utente) {
 
                         <div class="col-12">
                             <label class="form-label fw-semibold">Nazione</label>
-                            <select name="id_nazione" class="form-select">
+                            <select name="iso_code" class="form-select">
                                 <option value="">— Seleziona —</option>
                                 <?php foreach ($nazioni as $n): ?>
-                                    <option value="<?= (int)$n['id_nazione'] ?>"
-                                        <?= $utente['id_nazione'] == $n['id_nazione'] ? 'selected' : '' ?>>
+                                    <option value="<?= $n['iso_code'] ?>"
+                                        <?= $utente['iso_code'] == $n['iso_code'] ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($n['nome_nazione']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -166,5 +165,6 @@ if (!$utente) {
 
     <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

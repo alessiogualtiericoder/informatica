@@ -7,14 +7,14 @@ class userObj {
     private $citta;
     private $email;
     private $id_profilo;
-    private $id_nazione;
+    private $iso_code;
     private $attivo;
     private $foto_profilo;
     private $db;
 
     public function __construct($db, $username, $password = null, $nome = null, $cognome = null,
                                 $citta = null, $email = null, $attivo = null,
-                                $id_profilo = null, $id_nazione = null, $foto_profilo = null) {
+                                $id_profilo = null, $iso_code = null, $foto_profilo = null) {
         $this->db           = $db;
         $this->username     = $username;
         $this->password     = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
@@ -24,7 +24,7 @@ class userObj {
         $this->email        = $email;
         $this->attivo       = $attivo;
         $this->id_profilo   = $id_profilo;
-        $this->id_nazione   = $id_nazione;
+        $this->iso_code     = $iso_code;
         $this->foto_profilo = $foto_profilo;
     }
 
@@ -50,9 +50,9 @@ class userObj {
 
     public function create() {
         $sql = "INSERT INTO utenti 
-                    (username, password, nome, cognome, citta, email, attivo, id_profilo, id_nazione, foto_profilo, data_registrazione)
+                    (username, password, nome, cognome, citta, email, attivo, id_profilo, iso_code, foto_profilo, data_registrazione)
                 VALUES 
-                    (:username, :password, :nome, :cognome, :citta, :email, :attivo, :id_profilo, :id_nazione, :foto_profilo, :data_registrazione)";
+                    (:username, :password, :nome, :cognome, :citta, :email, :attivo, :id_profilo, :iso_code, :foto_profilo, :data_registrazione)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             ':username'           => $this->username,
@@ -63,7 +63,7 @@ class userObj {
             ':email'              => $this->email,
             ':attivo'             => $this->attivo ?? 1,
             ':id_profilo'         => $this->id_profilo,
-            ':id_nazione'         => $this->id_nazione,
+            ':iso_code'           => $this->iso_code,
             ':foto_profilo'       => $this->foto_profilo,
             ':data_registrazione' => date('Y-m-d H:i:s')
         ]);
@@ -71,7 +71,7 @@ class userObj {
 
     public function findByUsername() {
         $sql = "SELECT id_utente, username, password, nome, cognome, citta, email,
-                       attivo, id_profilo, id_nazione, foto_profilo, data_registrazione
+                       attivo, id_profilo, iso_code, foto_profilo, data_registrazione
                 FROM utenti WHERE username = :username";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':username', $this->username);
@@ -84,7 +84,7 @@ class userObj {
                        u.attivo, p.nome_profilo, n.nome_nazione
                 FROM utenti u
                 LEFT JOIN profili p ON p.id_profilo = u.id_profilo
-                LEFT JOIN nazioni n ON n.id_nazione = u.id_nazione
+                LEFT JOIN nazioni n ON n.iso_code   = u.iso_code
                 ORDER BY u.username";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
@@ -98,7 +98,7 @@ class userObj {
                     citta      = :citta,
                     email      = :email,
                     attivo     = :attivo,
-                    id_nazione = :id_nazione
+                    iso_code = :iso_code
                 WHERE username = :username";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
@@ -107,7 +107,7 @@ class userObj {
             ':citta'      => $this->citta,
             ':email'      => $this->email,
             ':attivo'     => $this->attivo,
-            ':id_nazione' => $this->id_nazione,
+            ':iso_code'   => $this->iso_code,
             ':username'   => $usernameOriginale
         ]);
     }
