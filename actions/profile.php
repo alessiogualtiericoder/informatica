@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Europe/Rome');
 require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../includes/user_obj.php');
 
 $username = $_SESSION['username'] ?? '';
 
@@ -12,12 +12,12 @@ if (!$username) {
 }
 
 if (isset($_POST['change_pwd'])) {
-    header("Location: /pages/changePassword.php");
+    header("Location: /actions/change_password.php");
     exit();
 }
 
 if (isset($_POST['logout'])) {
-    header("Location: /pages/logout.php");
+    header("Location: /actions/logout.php");
     exit();
 }
 
@@ -47,7 +47,7 @@ if ($userData) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impostazioni</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <?php require_once(__DIR__ . '/../includes/header.php'); ?>

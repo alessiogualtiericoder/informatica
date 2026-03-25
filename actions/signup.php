@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../includes/user_obj.php');
 
 $errore    = '';
 $messaggio = '';
@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errore = "Compila tutti i campi obbligatori";
     } else {
         try {
-            // DB, username, password, nome, cognome, città, email, attivo, id_profilo, iso_code, foto_profilo
             $user = new userObj($conn, $username, $password, $nome, $cognome, $citta, $email, $attivo, $id_profilo, $iso_code ?: null);
             $user->create();
             $messaggio = "Registrazione completata";
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -72,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <form method="POST">
                     <div class="row g-3">
-
                         <div class="col-6">
                             <label class="form-label fw-semibold">Username <span>*</span></label>
                             <input type="text" name="username" class="form-control" required>
@@ -112,11 +110,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </select>
                         </div>
 
-                        <div class="text-center mt-4">
-                            <input type="checkbox" required>
-                            <label for="termini">Accetto l'Informativa sulla <a href="privacy.php" class="text-decoration-none fw-bold">
-                                Privacy
-                            </a> e i <a href="terms_of_service.php" class="text-decoration-none fw-bold">Termini di servizio</a> di Cinevobis</label>
+                        <div class="mt-4">
+                            <input type="checkbox" id="termini" required>
+                            <label for="termini">
+                                Accetto l'Informativa sulla 
+                                <a href="/pages/public/privacy.php" class="text-decoration-none">Privacy</a> 
+                                e i 
+                                <a href="/pages/public/terms_of_service.php" class="text-decoration-none">Termini di servizio</a> 
+                                di Cinevobis
+                            </label>
                         </div>
 
                         <div class="col-12 mt-4">

@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Europe/Rome');
 require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../includes/user_obj.php');
 
 if (!isset($_SESSION['username'])) {
     header("Location: /index.php");

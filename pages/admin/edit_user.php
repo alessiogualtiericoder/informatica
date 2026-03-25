@@ -1,13 +1,13 @@
 <?php
 session_start();
 date_default_timezone_set('Europe/Rome');
-require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../../config/connection.php');
+require_once(__DIR__ . '/../../includes/user_obj.php');
 
 $username = $_POST['username'] ?? '';
 
 if (!$username) {
-    header("Location: adminArea.php");
+    header("Location: admin_area.php");
     exit();
 }
 
@@ -15,7 +15,7 @@ $errore    = '';
 $messaggio = '';
 
 if (isset($_POST['indietro'])) {
-    header("Location: users_area.php");
+    header("Location: users.php");
     exit();
 }
 
@@ -54,7 +54,7 @@ $user   = new userObj($conn, $username);
 $utente = $user->findByUsername();
 
 if (!$utente) {
-    header("Location: adminArea.php");
+    header("Location: admin_area.php");
     exit();
 }
 ?>
@@ -66,11 +66,11 @@ if (!$utente) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifica utente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
-    <?php require_once(__DIR__ . '/../includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/header.php'); ?>
 
     <div class="container flex-grow-1 d-flex justify-content-center align-items-center">
         <div class="card shadow-sm border-0 p-4" style="width: 100%; max-width: 640px;">
@@ -163,7 +163,7 @@ if (!$utente) {
         </div>
     </div>
 
-    <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

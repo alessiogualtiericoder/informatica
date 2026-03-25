@@ -1,8 +1,8 @@
 <?php
 session_start();
 date_default_timezone_set('Europe/Rome');
-require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../../config/connection.php');
+require_once(__DIR__ . '/../../includes/user_obj.php');
 
 $username = $_SESSION["username"] ?? '';
 
@@ -22,11 +22,11 @@ $utenti   = $user->readAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione utenti</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require_once(__DIR__ . '/../includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/header.php'); ?>
 
     <div class="container mt-4 flex-grow-1">
         <p class="fs-5 fw-bold mb-3">Utenti registrati</p>
@@ -56,7 +56,7 @@ $utenti   = $user->readAll();
                         <td><?= htmlspecialchars($utente['nome_nazione'] ?? '') ?></td>
                         <td><?= $utente['attivo'] ? 'Sì' : 'No' ?></td>
                         <td>
-                            <form method="POST" action="editUser.php">
+                            <form method="POST" action="edit_user.php">
                                 <input type="hidden" name="username" value="<?= htmlspecialchars($utente['username']) ?>">
                                 <button type="submit" class="btn btn-primary btn-sm">Modifica</button>
                             </form>
@@ -67,7 +67,7 @@ $utenti   = $user->readAll();
         </table>
     </div>
 
-    <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/footer.php'); ?>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

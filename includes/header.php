@@ -3,19 +3,19 @@ $currentPage = basename($_SERVER['SCRIPT_NAME']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['logout'])) {
-        header("Location: /pages/logout.php");
+        header("Location: /actions/logout.php");
         exit();
     }
     if (isset($_POST['login']) && $currentPage !== 'login.php') {
-        header("Location: /pages/login.php");
+        header("Location: /actions/login.php");
         exit();
     }
     if (isset($_POST['signup']) && $currentPage !== 'signup.php') {
-        header("Location: /pages/signup.php");
+        header("Location: /actions/signup.php");
         exit();
     }
     if (isset($_POST['profile'])) {
-        header("Location: /pages/profile.php");
+        header("Location: /actions/profile.php");
         exit();
     }
 }
@@ -30,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="btn btn-primary" name="profile">Profile</button>
             <?php endif; ?>
 
-            <?php if (in_array($currentPage, ['sessionArea.php', 'addFilmArea.php', 'editUser.php', 'profile.php', 'adminArea.php', 'userArea.php'])): ?>
+            <?php if (in_array($currentPage, ['sessions.php', 'add_film.php', 'users.php', 'edit_user.php', 'profile.php', 'admin_area.php', 'home_user.php'])): ?>
                 <button class="btn btn-primary" name="profile">Profile</button>
             <?php endif; ?>
 
-            <?php if ($currentPage === 'index.php'): ?>
+            <?php if ($currentPage === 'index.php' && !isset($_SESSION['username'])): ?>
                 <button class="btn btn-secondary" name="login">Login</button>
                 <button class="btn btn-primary" name="signup">Sign up</button>
             <?php endif; ?>

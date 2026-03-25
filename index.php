@@ -4,10 +4,10 @@ date_default_timezone_set('Europe/Rome');
  
 if (isset($_SESSION['username'])) {
     if ($_SESSION['id_profilo'] == 1) {
-        header("Location: /pages/adminArea.php");
+        header("Location: /pages/admin/admin_area.php");
         exit();
     } else {
-        header("Location: /pages/userArea.php");
+        header("Location: /pages/user/home_user.php");
         exit();
     }
 }
@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-dark text-white"> 
     <?php require_once("includes/header.php"); ?>
@@ -46,7 +46,7 @@ if (isset($_SESSION['username'])) {
         </div>
 
         <div class="mt-5">
-            <a href="/pages/discover.php" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold">Scopri chi siamo</a>
+            <a href="/pages/public/discover.php" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold">Scopri chi siamo</a>
         </div>
 
     </main>

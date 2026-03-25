@@ -19,11 +19,11 @@ if (!$username || $id_profilo != 1) {
     <title>Area amministratore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-    <?php require_once(__DIR__ . '/../includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/header.php'); ?>
 
     <main class="container flex-grow-1 d-flex flex-column justify-content-center py-5">
 
@@ -37,7 +37,7 @@ if (!$username || $id_profilo != 1) {
         <div class="row g-4 justify-content-center">
 
             <div class="col-12 col-md-6 col-lg-4">
-                <a href="addFilmArea.php" class="text-decoration-none h-100 d-block">
+                <a href="add_film.php" class="text-decoration-none h-100 d-block">
                     <div class="card border-0 shadow-sm text-center p-4 h-100 card-hover">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <div class="display-4 mb-3 text-primary">
@@ -51,7 +51,7 @@ if (!$username || $id_profilo != 1) {
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <a href="users_area.php" class="text-decoration-none h-100 d-block">
+                <a href="users.php" class="text-decoration-none h-100 d-block">
                     <div class="card border-0 shadow-sm text-center p-4 h-100 card-hover">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <div class="display-4 mb-3 text-success">
@@ -65,7 +65,7 @@ if (!$username || $id_profilo != 1) {
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-                <a href="sessionArea.php" class="text-decoration-none h-100 d-block">
+                <a href="sessions.php" class="text-decoration-none h-100 d-block">
                     <div class="card border-0 shadow-sm text-center p-4 h-100 card-hover">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <div class="display-4 mb-3 text-warning">
@@ -81,7 +81,7 @@ if (!$username || $id_profilo != 1) {
         </div>
     </main>
 
-    <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 date_default_timezone_set('Europe/Rome');
-require_once(__DIR__ . '/../config/connection.php');
-require_once(__DIR__ . '/../includes/userObj.php');
+require_once(__DIR__ . '/../../config/connection.php');
+require_once(__DIR__ . '/../../includes/user_obj.php');
 
 $username = $_SESSION["username"] ?? '';
 
@@ -23,11 +23,11 @@ if (isset($_POST['upload']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aggiungi film</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require_once(__DIR__ . '/../includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/header.php'); ?>
 
     <div class="container mt-4 flex-grow-1">
 
@@ -42,7 +42,7 @@ if (isset($_POST['upload']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
     </div>
 
-    <?php require_once(__DIR__ . '/../includes/footer.php'); ?>
+    <?php require_once(__DIR__ . '/../../includes/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
