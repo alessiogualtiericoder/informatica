@@ -32,7 +32,7 @@ if (!empty($id_film)) {
                     $persone[] = trim($row['nome'] . ' ' . $row['cognome']);
                 }
             }
-            $persone = array_unique($persone);
+            $persone = array_unique($persone); // Elimina le persone ripetute ripetuti
         }
 
     } catch (PDOException $e) {
