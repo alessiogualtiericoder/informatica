@@ -20,7 +20,7 @@ $utenti   = $user->readAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione utenti</title>
+    <title>Gestione utenti - Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -56,7 +56,7 @@ $utenti   = $user->readAll();
                         <td><?= htmlspecialchars($utente['nome_nazione'] ?? '') ?></td>
                         <td><?= $utente['attivo'] ? 'Sì' : 'No' ?></td>
                         <td>
-                            <form method="POST" action="edit_user.php">
+                            <form method="GET" action="edit_user.php">
                                 <input type="hidden" name="username" value="<?= htmlspecialchars($utente['username']) ?>">
                                 <button type="submit" class="btn btn-primary btn-sm">Modifica</button>
                             </form>

@@ -4,7 +4,7 @@ date_default_timezone_set('Europe/Rome');
 require_once(__DIR__ . '/../config/connection.php');
 require_once(__DIR__ . '/../includes/user_obj.php');
 
-$errore = '';
+$errore = "";
 
 if (isset($_POST['login'])) {
     $username = trim($_POST["username"]);
@@ -48,11 +48,11 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login -  Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <?php require_once(__DIR__ . '/../includes/header.php'); ?>
 

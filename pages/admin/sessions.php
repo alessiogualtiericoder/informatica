@@ -13,7 +13,7 @@ if (!$username) {
 
 $user     = new userObj($conn, $username);
 $utenti   = $user->readAll();
-$righe    = $_POST['righe'] ?? 10;
+$righe    = $_GET['righe'] ?? 10;
 $sessioni = $user->readAccess($righe);
 ?>
 
@@ -22,7 +22,7 @@ $sessioni = $user->readAccess($righe);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area sessioni</title>
+    <title>Area sessioni - Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -33,13 +33,9 @@ $sessioni = $user->readAccess($righe);
     <div class="container mt-4 flex-grow-1">
         <p class="fs-5 fw-bold mb-3">Sessioni registrate</p>
 
-        <form action="" method="POST" class="d-flex align-items-center gap-2 mb-3">
+        <form method="GET" class="d-flex align-items-center gap-2 mb-3">
             <label class="mb-0">Righe</label>
-            <select name="righe" class="form-select form-select-sm w-auto">
-                <?php foreach ([10, 50, 100] as $r): ?>
-                    <option value="<?= $r ?>" <?= $righe == $r ? 'selected' : '' ?>><?= $r ?></option>
-                <?php endforeach; ?>
-            </select>
+            <input type="number" name="righe" class="form-control form-control-sm" style="width: 80px;" min="1" value="<?= htmlspecialchars($righe) ?>">
             <button type="submit" class="btn btn-primary btn-sm">Invia</button>
         </form>
 

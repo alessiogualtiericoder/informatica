@@ -24,8 +24,8 @@ if (isset($_POST['logout'])) {
 $user = new userObj($conn, $username);
 $userData = $user->findByUsername();
 
-$profilo = '';
-$nazione = '';
+$profilo = "";
+$nazione = "";
 if ($userData) {
     if ($userData['id_profilo']) {
         $stmt = $conn->prepare("SELECT nome_profilo FROM profili WHERE id_profilo = ?");
@@ -45,11 +45,11 @@ if ($userData) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impostazioni</title>
+    <title>Profilo - Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php require_once(__DIR__ . '/../includes/header.php'); ?>
 
     <div class="container flex-grow-1 d-flex justify-content-center align-items-center">

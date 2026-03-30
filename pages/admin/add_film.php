@@ -21,7 +21,7 @@ if (isset($_POST['upload']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aggiungi film</title>
+    <title>Aggiungi film - Cinevobis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
