@@ -20,7 +20,7 @@ if (!empty($id_film)) {
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([':id' => $id_film]);
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $stmt->fetchAll();
         
         if (empty($rows)) {
             $errore = "Nessun film trovato con questo ID";
@@ -32,7 +32,7 @@ if (!empty($id_film)) {
                     $persone[] = trim($row['nome'] . ' ' . $row['cognome']);
                 }
             }
-            $persone = array_unique($persone); // Elimina le persone ripetute ripetuti
+            $persone = array_unique($persone); // Elimina le persone ripetute
         }
 
     } catch (PDOException $e) {
@@ -71,7 +71,8 @@ if (!empty($id_film)) {
                             
                             <h5 class="text-muted fw-semibold mb-3">Trama</h5>
                             <p class="card-text fs-6 text-secondary lh-lg mb-4">
-                                <?= nl2br(htmlspecialchars($film['trama'])) ?>
+                                <!-- Restituisce la stringa string con <br /> inserito prima di tutti i newline -->
+                                <?= nl2br(htmlspecialchars($film['trama'])) ?> 
                             </p>
 
                             <?php if (!empty($persone)): ?>
@@ -93,11 +94,11 @@ if (!empty($id_film)) {
                                     <div class="fs-5 fw-medium"><i class="bi bi-clock text-primary me-2"></i><?= htmlspecialchars($film['durata_minuti']) ?> min</div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="text-uppercase text-muted small fw-bold tracking-wide mb-1">Data di Uscita</div>
-                                    <div class="fs-5 fw-medium"><i class="bi bi-calendar3 text-primary me-2"></i><?= htmlspecialchars(date('d/m/Y', strtotime($film['data_uscita']))) ?></div>
+                                    <div class="text-uppercase text-muted small fw-bold tracking-wide mb-1">Anno di Uscita</div>
+                                    <div class="fs-5 fw-medium"><i class="bi bi-calendar3 text-primary me-2"></i><?= htmlspecialchars(date('Y', strtotime($film['data_uscita']))) ?></div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="text-uppercase text-muted small fw-bold tracking-wide mb-1">Lingua</div>
+                                    <div class="text-uppercase text-muted small fw-bold tracking-wide mb-1">Paese di produzione</div>
                                     <div class="fs-5 fw-medium"><i class="bi bi-globe text-primary me-2"></i><?= htmlspecialchars(strtoupper($film['iso_code'])) ?></div>
                                 </div>
                             </div>

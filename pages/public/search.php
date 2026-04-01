@@ -9,7 +9,13 @@ $films = [];
 $searched = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 if ($searched !== '') {
-    $search = "%" . $searched . "%";
+    $temp = null;
+
+    for ($i = 0; $i < strlen($searched); $i++) {
+        $temp = $temp . substr($searched, $i, 1) . '%';
+    }
+
+    $search = "%" . $temp;
 
     try {
         $sql = "SELECT * FROM films WHERE titolo LIKE :search";
